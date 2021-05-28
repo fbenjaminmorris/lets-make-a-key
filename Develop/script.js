@@ -1,17 +1,35 @@
-// Assignment code here
+//generate random password
+function generate(){
 
+  //possible password values
+  let values = "ABCDEFGHIJKLMNOPQRSTUVWZYZabcdefghijklmnopqrstuvwxyz1234567890!@#$%^&*()_+";
 
-// Get references to the #generate element
-var generateBtn = document.querySelector("#generate");
+  let password = "";
 
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
+  //create for loop to choose password characters
+  for(var i = 0; i <= complexity; i++){
+      password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
+  }
 
-  passwordText.value = password;
+  //add password to textbox/display area
+  document.getElementById("display").value = password;
+
+  //add password to previously generated passwords section
+  document.getElementById("lastNums").innerHTML += password + "<br />";
 
 }
 
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+//set default length display of 25
+document.getElementById("length").innerHTML = "Length: 25";
+
+
+//function to copy password to clipboard
+function copyPassword(){
+
+  document.getElementById("display").select();
+
+  document.execCommand("Copy");
+
+  alert("Password copied to clipboard!");
+
+}
